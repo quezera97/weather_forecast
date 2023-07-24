@@ -118,7 +118,7 @@
             async getCountryDetails() {
                 try {
                     const responseCountry = await axios.get(
-                        `http://api.geonames.org/searchJSON?q=${this.selectedCountry}&maxRows=1&username=${process.env.VUE_APP_GEONAMES_USERNAME}`
+                        `http://api.geonames.org/searchJSON?q=${this.selectedCountry}&maxRows=1&username=quezera`
                     );
 
                     this.countryDetails = responseCountry.data.geonames;
@@ -126,7 +126,7 @@
                     this.countryCode = this.countryDetails[0].countryCode;
 
                     const responseState = await axios.get(
-                        `http://api.geonames.org/childrenJSON?geonameId=${this.geonameId}&username=${process.env.VUE_APP_GEONAMES_USERNAME}`
+                        `http://api.geonames.org/childrenJSON?geonameId=${this.geonameId}&username=quezera`
                     );
 
                     this.states = responseState.data.geonames
@@ -191,7 +191,7 @@
                 else {
                     try {                        
 
-                        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${this.inputText}&appid=${process.env.VUE_APP_KEY_WEATHER}`)
+                        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${this.inputText}&appid=70eb2934deb07909887a97e39455e336`)
                         .then(response => {
                             this.dataAPI = response.data;
                         })  

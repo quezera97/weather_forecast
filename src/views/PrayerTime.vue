@@ -56,7 +56,7 @@
                         </tbody>
                     </table>
                 </v-col>
-            </v-row>
+            </v-row>            
         </div>
     </div>
 </template>
@@ -85,7 +85,6 @@
         components: {
             WeatherHeader,
         },
-
         data() {
             return {
                 show: false,

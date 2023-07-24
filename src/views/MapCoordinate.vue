@@ -94,7 +94,7 @@
             async getCountries() {
                 try {
                     const response = await axios.get(
-                        `http://api.geonames.org/countryInfoJSON?username=${process.env.VUE_APP_GEONAMES_USERNAME}`
+                        `http://api.geonames.org/countryInfoJSON?username=quezera`
                     );
                     this.countries = response.data.geonames;                    
                 } catch (error) {
@@ -105,7 +105,7 @@
             async getCountryDetails() {
                 try {
                     const responseCountry = await axios.get(
-                        `http://api.geonames.org/searchJSON?q=${this.selectedCountry}&maxRows=1&username=${process.env.VUE_APP_GEONAMES_USERNAME}`
+                        `http://api.geonames.org/searchJSON?q=${this.selectedCountry}&maxRows=1&username=quezera`
                     );
                         
                     this.countryDetails = responseCountry.data.geonames[0];
@@ -113,14 +113,14 @@
 
                     if(this.countryCode){
                         const responseCapitalCity = await axios.get(
-                            `http://api.geonames.org/countryInfoJSON?country=${this.countryCode}&username=${process.env.VUE_APP_GEONAMES_USERNAME}`
+                            `http://api.geonames.org/countryInfoJSON?country=${this.countryCode}&username=quezera`
                         );
                         this.selectedCountryDetails = responseCapitalCity.data.geonames[0];
                         this.capitalCity = this.selectedCountryDetails.capital ?? null;
 
                         if(this.capitalCity){
                             const responseCoordinate = await axios.get(
-                                `http://api.geonames.org/searchJSON?q=${this.capitalCity}&maxRows=1&username=${process.env.VUE_APP_GEONAMES_USERNAME}`
+                                `http://api.geonames.org/searchJSON?q=${this.capitalCity}&maxRows=1&username=quezera`
                             );
 
                             this.coordinateDetails = responseCoordinate.data.geonames[0];
