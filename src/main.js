@@ -8,12 +8,20 @@ import vuetify from './plugins/vuetify';
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
-Vue.config.productionTip = false
+//to do global styling
+// const options = {
+//   confirmButtonColor: '#41b882',
+//   cancelButtonColor: '#ff7674',
+// };
+
+// Vue.use(VueSweetalert2, options);
+Vue.use(VueSweetalert2);
+
+Vue.config.productionTip = false;
 
 new Vue({
   i18n,
   vuetify,
   router,
-  VueSweetalert2,
   render: h => h(App)
 }).$mount('#app')

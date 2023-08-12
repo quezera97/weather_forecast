@@ -73,6 +73,8 @@
     import WeatherInfo from '../components/weather/WeatherInfo.vue';
     import WeatherHeader from '../components/weather/WeatherHeader.vue';
 
+    import { showErrorAlert } from '../components/swal/error.js';
+
     export default {
         name: "WeatherForecast",
         components: {
@@ -113,6 +115,7 @@
                     this.countries = response.data.geonames;
                 } catch (error) {
                     console.error(error);
+                    showErrorAlert(error);
                 }
             },
             async getCountryDetails() {
@@ -137,6 +140,7 @@
 
                 } catch (error) {
                     console.error(error);
+                    showErrorAlert(error);
                 }
             },
             getCityDetails() {

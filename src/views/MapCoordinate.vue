@@ -48,7 +48,9 @@
     import WeatherHeader from '../components/weather/WeatherHeader.vue';
 
     import markerIcon from '@/assets/img/marker-icon.png';
-    import markerShadow from '@/assets/img/marker-shadow.png';  
+    import markerShadow from '@/assets/img/marker-shadow.png';
+
+    import { showErrorAlert } from '../components/swal/error.js';
 
     export default {
         name: "MapCoordinate",
@@ -78,28 +80,20 @@
             this.displayMap();
         },
         methods: {
-            showAlert(message) {
-                this.$swal.fire({
-                    title: 'Error',
-                    text: message,
-                    icon: 'error',
-                });
-            },
-
             openBox(){
                 this.inputing = true
                 this.show = !this.show
             },
 
-            async getCountries() {
+            async getCountries() {                
                 try {
                     const response = await axios.get(
                         `http://api.geonames.org/countryInfoJSON?username=quezera`
                     );
                     this.countries = response.data.geonames;                    
                 } catch (error) {
-                    this.showAlert(error);
                     console.error(error);
+                    showErrorAlert(error);
                 }
             },
             async getCountryDetails() {
@@ -128,6 +122,7 @@
                             this.longitude = this.coordinateDetails.lng ?? null;
 
                             if(this.latitude && this.longitude){
+
                                 const responseTime = await axios.get(
                                     `https://timeapi.io/api/Time/current/coordinate?latitude=${this.latitude}&longitude=${this.longitude}`
                                 );
@@ -146,8 +141,9 @@
 
 
                 } catch (error) {
-                    this.showAlert(error);
                     console.error(error);
+
+                    showErrorAlert(error);
                 }
             },
             displayMap() {

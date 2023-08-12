@@ -79,6 +79,8 @@
         terengganuZoneOptions,
     } from '../components/prayer/options.js';
     import WeatherHeader from '../components/weather/WeatherHeader.vue';
+    
+    import { showErrorAlert } from '../components/swal/error.js';
 
     export default {
         name: "PrayerTime",
@@ -173,13 +175,6 @@
             }
         },
         methods: {
-            showAlert() {
-                this.$swal.fire({
-                    title: 'Error',
-                    text: 'This is an error alert!',
-                    icon: 'error',
-                });
-            },
             openBox(){
                 this.inputing = true
                 this.show = !this.show
@@ -208,8 +203,8 @@
                         this.isha = this.prayerTime.isha ?? '-';
                     }
                 } catch (error) {
-                    this.showAlert(error);
                     console.error(error);
+                    showErrorAlert(error);
                 }
             },
         }
